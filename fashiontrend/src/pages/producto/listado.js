@@ -1,35 +1,30 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
+import { useEffect, useState } from "react";
+import ListadoComponent from "../components/Producto/listado";
 const inter = Inter({ subsets: ["latin"] });
 
-export default async function Listado() {
+export default function Listado() {
+    const [products, setproducts] = useState([]);
 
-    const res = await fetch('http://localhost:3000/api/products');
-    const data = await res.json();
-    const read_data = JSON.stringify(data);
-
-    console.log(data.get(0));
+    useEffect(() => {
+        fetch('http://localhost:3000/api/products')
+        .then((response) => response.json())
+        .then((json) => setproducts(json))
+    },[])
     
+    const categorias = [...new Set(products.map((p)=>p.categoria))]
 
     return(
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Talla</th>
-                        <th>Color</th>
-                        <th>Categoria</th>
-                        <th>Tipo</th>
-                        <th>Precio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    for(){
-
-                    }
-                </tbody>
-            </table>
+        <div className="grid gap-4 grid-flow-cols-2">
+            {categorias.map((categorias) => (
+                <div>
+                    {products.filter(p => p.categoria == categorias).map(products => (
+                        <div>
+                            <ListadoComponent {...products}/>
+                        </div>
+                    ))}
+                </div>
+            ))}
         </div>
 
     )
