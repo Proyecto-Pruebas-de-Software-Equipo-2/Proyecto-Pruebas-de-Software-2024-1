@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import ListadoComponent from "../components/Producto/listado";
+import BuscarComponent from "../../components/Producto/buscar";
 
 
 export default function Buscar(){
@@ -19,7 +19,7 @@ export default function Buscar(){
         <div>
             {products.filter(p => p.nombre.toLowerCase().includes(nombre.toLowerCase())).map(products => (
                 <div>
-                    <ListadoComponent {...products}/>
+                    <BuscarComponent {...products}/>
                 </div>
             ))}
         </div>
