@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-function ListadoComponent({ nombre, precio,talla,descripcion,color,categoria,tipo}){
+function ListadoComponent({ _id,nombre, precio,talla,descripcion,color,categoria,tipo}){
     return(
-        <div className="grid gap-4">
+        <Link href ={{pathname:"/producto/detalle", query: {id : _id}}} className="grid gap-4">
             <div className="w-64">
                 <div className="bg-blue-100 p-5 rounded-x1">
                     <Image src={"/images/640.webp"} width={220} height={220}/>
@@ -19,7 +20,7 @@ function ListadoComponent({ nombre, precio,talla,descripcion,color,categoria,tip
                     <p className="flex">Tipo: {tipo}</p>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
