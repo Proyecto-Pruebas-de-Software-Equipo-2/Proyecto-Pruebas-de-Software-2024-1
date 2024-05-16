@@ -1,19 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/router";
 
 
 function ListadoComponent({ _id,nombre, precio,talla,descripcion,color,categoria,tipo}){
-
+    const id = _id
+    const router = useRouter();
     const handleDelete = async(e) => {
         e.preventDefault();
-        pathname = "http://localhost:3000/api/products/" + _id
         try {
-            const res = await fetch(pathname,{
+            const res = await fetch("http://localhost:3000/api/products/" + id,{
                 method: "DELETE",
             });
             if (res.ok){
-                router.push('/producto/listado');
+                router.reload();
             } else {
                 throw new Error('Falló la creación de producto')
             }
@@ -41,9 +42,9 @@ function ListadoComponent({ _id,nombre, precio,talla,descripcion,color,categoria
                     </div>
                 </div>
             </Link>
-            <form className="py-8">
+            <form onSubmit={handleDelete} className="py-8">
                 <Link href={{pathname:"/producto/[id]/editar", query:{id: _id}}} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</Link>
-                <Link href={{pathname:"/producto/[id]/eliminar", query:{id: _id}}}   className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Eliminar Producto</Link>
+                <button type="submit"   className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Eliminar Producto</button>
             </form>
         </div>
     )
