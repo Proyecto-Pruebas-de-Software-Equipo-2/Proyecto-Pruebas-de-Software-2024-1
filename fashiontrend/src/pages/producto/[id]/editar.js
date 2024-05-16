@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ISSERVER = typeof window === "undefined";
 export default function Editar(){
@@ -33,9 +35,6 @@ export default function Editar(){
     const [precio, setPrecio] = useState();
     const [stock, setStock] = useState();
 
-
-
-
     const handleSubmit = async(e) => {
         e.preventDefault();
 
@@ -52,6 +51,17 @@ export default function Editar(){
                 body: JSON.stringify({nombre,talla,descripcion,color,categoria,tipo,precio,stock}),
             });
             if (res.ok){
+                toast.success('Producto editado exitosamente!', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    progress: undefined,
+                    theme: "light",
+
+                    });
                 router.push('/producto/listado');
             } else {
                 throw new Error('Falló la creación de producto')
