@@ -29,6 +29,7 @@ export default function Detalle(){
                     <div className="px-2 py-2 text-2xl" >Categoría: {product.categoria}</div>
                     <div className="px-2 py-2 text-2xl" >Tipo: {product.tipo}</div>
                     <div className="px-2 py-2 text-2xl" >Precio: ${product.precio}</div>
+                    <div className="px-2 py-2 text-2xl" >Stock: {product.stock}</div>
                     <div className="px-2 py-2 text-2xl" >Descripción:</div>
                     <div className="px-2 py-2 text-1xl">{product.descripcion}</div>
                     <div className="px-2 py-2">

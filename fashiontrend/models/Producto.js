@@ -6,7 +6,8 @@ const ProductoSchema = new Schema({
     descripcion: String,
     color: String,
     categoria: String,
-    tipo: String
+    tipo: String,
+    stock: Number,
 })
 
 const Producto = models?.Producto || model("Producto",ProductoSchema);
