@@ -44,7 +44,7 @@ export default function Editar(){
             return;
         }
         try {
-            const res = await fetch(pathname,{
+            const res = await fetch("http://localhost:3000/api/products/" + id,{
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json"
