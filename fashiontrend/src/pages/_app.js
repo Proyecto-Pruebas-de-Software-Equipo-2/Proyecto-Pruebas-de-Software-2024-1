@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
   const handleSubmit = async(e) =>{
     e.preventDefault();
     console.log(nombre);
-    router.push({pathname:'/producto/[nombre]',query:{nombre: nombre}});
+    router.push({pathname:'/producto/buscar',query:{nombre: nombre}});
   }
 
   return(

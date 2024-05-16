@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import BuscarComponent from "../../components/Producto/buscar";
+import BuscarComponent from "../components/Producto/buscar";
 
 
 export default function Buscar(){
