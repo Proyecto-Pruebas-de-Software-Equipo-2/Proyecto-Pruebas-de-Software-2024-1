@@ -1,7 +1,7 @@
 # Proyecto-Pruebas-de-Software-2024-1
 ## Dependencias
 
-next.js, instalación "npm install next"
+next.js, instalación "npm install next" dentro de directorio "fashiontrend"
 
 ## Requisitos de ejecución
 
