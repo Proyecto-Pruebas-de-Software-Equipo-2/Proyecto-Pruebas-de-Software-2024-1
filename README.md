@@ -1,4 +1,7 @@
 # Proyecto-Pruebas-de-Software-2024-1
+## Dependencias
+
+next.js, instalación "npm install next"
 
 ## Requisitos de ejecución
 
