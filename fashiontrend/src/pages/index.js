@@ -7,21 +7,14 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    // Fetch products only if the user is on the /producto/listado route
-    if (router.pathname === "/producto/listado") {
       fetch('http://localhost:3000/api/products')
         .then((response) => response.json())
         .then((json) => setProducts(json))
         .catch((error) => console.error("Error fetching products:", error));
-    }
-  }, [router.pathname]); // Re-run effect when route changes
+  }, [router.pathname]);
 
   const categorias = [...new Set(products.map((p) => p.categoria))];
 
-  // Render the list of products only if on the /producto/listado route
-  if (router.pathname !== "/producto/listado") {
-    return <div>Main page (en progreso).</div>;
-  }
 
   return (
     <div>
