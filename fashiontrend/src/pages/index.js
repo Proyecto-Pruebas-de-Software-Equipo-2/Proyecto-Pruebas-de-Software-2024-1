@@ -16,11 +16,11 @@ export default function Home() {
 
   return(
       <div>
-          <div className="grid gap-4 grid-flow-cols-2">
+          <div className="grid px-5 gap-4 grid-flow-cols-2">
               {categorias.map((categorias) => (
                   <div>
                       {products.filter(p => p.categoria == categorias).map(products => (
-                          <div>
+                          <div className="py-3">
                               <BuscarComponent {...products}/>
                           </div>
                       ))}

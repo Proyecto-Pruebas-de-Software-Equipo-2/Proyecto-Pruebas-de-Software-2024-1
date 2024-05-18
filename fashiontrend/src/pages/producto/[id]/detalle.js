@@ -29,7 +29,7 @@ export default function Detalle(){
     },[])
 
     return(
-        <div className="bg-gradient-to-b from-violet-950 to-transparent h-screen">
+        <div className="py-2 bg-gradient-to-b from-violet-950 to-transparent h-screen">
             <div className="grid grid-cols-2 gap-x-2 gap-y-3">
                 <div className=" border-white border-2 rounded-lg shadow-xl h-[500px] w-[500px]">
                     <Image className="px-2 py-2" src={"/images/640.webp"} width={500} height={500}/>

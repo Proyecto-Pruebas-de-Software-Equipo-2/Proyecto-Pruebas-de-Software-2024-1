@@ -18,7 +18,7 @@ export default function Buscar(){
 
         <div>
             {products.filter(p => p.nombre.toLowerCase().includes(nombre.toLowerCase())).map(products => (
-                <div>
+                <div className="py-3 px-4">
                     <BuscarComponent {...products}/>
                 </div>
             ))}
