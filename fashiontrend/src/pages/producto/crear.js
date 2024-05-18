@@ -41,7 +41,7 @@ export default function Crear(){
     };
 
     return(
-        <div className="items-center bg-gradient-to-b  from-slate-800 to-transparent">
+        <div className="items-center bg-gradient-to-b  from-rose-500 to-transparent">
             <title>Crear Producto</title>
             <h6 className="mb-2 text-center text-6xl font-serif py-10">Crear Producto</h6>
             <form onSubmit={handleSubmit} className="max-w-sm mx-auto items-center rounded-lg p-4 border-purple-950 border-4 box-border h-50 w-50">

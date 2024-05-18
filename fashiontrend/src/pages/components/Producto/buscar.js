@@ -4,7 +4,7 @@ import React from "react";
 
 function BuscarComponent({ _id,nombre, precio,talla,descripcion,color,categoria,tipo}){
     return(
-        <Link href ={{pathname:"/producto/[id]/detalle", query: {id : _id}}} className="border-2 py-8  h-86  items-center bg-gradient-to-r from-red-900 to-violet-900 grid grid-cols-2 gap-4">
+        <Link href ={{pathname:"/producto/[id]/detalle", query: {id : _id}}} className="border-2 py-8  h-86  items-center grid grid-cols-2 gap-4">
             <div className="w-64 px-2">
                 <div className="mt-2 py-2">
                     <h3 className="font-bold text-3xl">{nombre}</h3>

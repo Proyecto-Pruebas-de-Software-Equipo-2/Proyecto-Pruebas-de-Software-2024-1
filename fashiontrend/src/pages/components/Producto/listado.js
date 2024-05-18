@@ -24,7 +24,7 @@ function ListadoComponent({ _id,nombre, precio,talla,descripcion,color,categoria
     };
 
     return(
-        <Link href ={{pathname:"/producto/[id]/detalle", query: {id : _id}}} className=" h-86 bg-gradient-to-r from-red-900 to-violet-900 border-2  items-center grid grid-cols-3 px-3 gap-8 py-8">
+        <Link href ={{pathname:"/producto/[id]/detalle", query: {id : _id}}} className=" h-86 bg-gradient-to-r  border-t-sky-200 items-center grid grid-cols-3 px-3 gap-8 py-8">
             <div  className="grid gap-4">
                 <div className="w-64 px-2 py-2">
                     <div className="mt-2 py-2">
