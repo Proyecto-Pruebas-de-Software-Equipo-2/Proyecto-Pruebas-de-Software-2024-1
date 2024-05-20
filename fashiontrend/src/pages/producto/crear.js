@@ -41,7 +41,7 @@ export default function Crear(){
     };
 
     return(
-        <div className="items-center bg-gradient-to-b  from-rose-500 to-transparent">
+        <div className="items-center bg-gradient-to-b">
             <title>Crear Producto</title>
             <h6 className="mb-2 text-center text-6xl font-serif py-10">Crear Producto</h6>
             <form onSubmit={handleSubmit} className="max-w-sm mx-auto items-center rounded-lg p-4 border-purple-950 border-4 box-border h-50 w-50">
@@ -82,7 +82,6 @@ export default function Crear(){
                 <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Crear Producto</button>
                 <Link href={"/producto/listado"} className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Cancelar</Link>
                 </div>
-                <Pa/>
                 
                 
                 
