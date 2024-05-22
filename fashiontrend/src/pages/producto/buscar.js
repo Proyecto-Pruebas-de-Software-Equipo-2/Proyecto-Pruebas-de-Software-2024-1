@@ -35,10 +35,17 @@ export default function Buscar(){
     }
 
     function handlePrevious(){
+        let maxIndex = products.filter(p => p.nombre.toLowerCase().includes(nombre.toLowerCase())).length;
         if (initialIndex - 5 < 0)return;
         else {
-            setlastIndex(lastIndex-5);
-            setinitialIndex(initialIndex-5);
+            if (maxIndex == lastIndex ) {
+                setlastIndex(initialIndex);
+                setinitialIndex(initialIndex-5);
+            }
+            else {
+                setinitialIndex(initialIndex-5);
+                setlastIndex(lastIndex-5);
+            }
             window.scrollTo(0,0);
             return;
         }

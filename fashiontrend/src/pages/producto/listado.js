@@ -38,10 +38,17 @@ export default function Listado() {
     }
 
     function handlePrevious(){
+        let maxIndex = products.length;
         if (initialIndex - 5 < 0)return;
         else {
-            setlastIndex(lastIndex-5);
-            setinitialIndex(initialIndex-5);
+            if (maxIndex == lastIndex ) {
+                setlastIndex(initialIndex);
+                setinitialIndex(initialIndex-5);
+            }
+            else {
+                setinitialIndex(initialIndex-5);
+                setlastIndex(lastIndex-5);
+            }
             window.scrollTo(0,0);
             return;
         }
