@@ -13,4 +13,4 @@ Para ser capaz de ejecutar la aplicación se necesita tener instalado [Node.js](
 
 ## Videos
 
-[Entrega 1](https://drive.google.com/file/d/1vNHUNc406Zrb3qjSVOxQwJPfkAhlEWtb/view?usp=sharing)
+[Entrega 1](https://drive.google.com/file/d/1byuuvx4kIawvvtCAA4c27DvPlBKlFU5k/view?usp=sharing)
