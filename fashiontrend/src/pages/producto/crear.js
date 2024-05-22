@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Head from "next/head";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Crear(){
     const [nombre, setNombre] = useState("");
@@ -31,7 +33,19 @@ export default function Crear(){
                 body: JSON.stringify({nombre,talla,descripcion,color,categoria,tipo,precio,stock}),
             });
             if (res.ok){
-                router.push('/producto/listado');
+                toast.success('Producto creado exitosamente', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    progress: undefined,
+                    theme: "light",
+                    onClose: () => {
+                        router.push('/producto/listado');
+                    }
+                    });
             } else {
                 throw new Error('Falló la creación de producto')
             }
@@ -84,7 +98,7 @@ export default function Crear(){
                 </div>
                 
                 
-                
+               
             </form>
         </div>
     )

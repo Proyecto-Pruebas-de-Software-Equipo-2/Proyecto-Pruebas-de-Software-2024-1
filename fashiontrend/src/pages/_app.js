@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ToastContainer } from 'react-toastify';
+
 
 export default function App({ Component, pageProps }) {
   const [nombre, setNombre] = useState("");
@@ -30,13 +32,9 @@ export default function App({ Component, pageProps }) {
             <div className="flex px-4 items-center">
                 <button className="bg-[#a6c1ee] text-white px-3 py-1 rounded-full hover:bg-[#87acec]">Iniciar Sesión</button>
             </div>
+            <ToastContainer />
             </nav>
 
-      
-
-
-
-      
       <Component {...pageProps} />
     </div>
     

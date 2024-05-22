@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router"; // Import useRouter
 import React from "react";
-import { useRouter } from "next/router";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function ListadoComponent({ _id,nombre, precio,talla,descripcion,color,categoria,tipo}){
@@ -14,9 +16,21 @@ function ListadoComponent({ _id,nombre, precio,talla,descripcion,color,categoria
                 method: "DELETE",
             });
             if (res.ok){
-                router.reload();
+                toast.success('Producto eliminado exitosamente', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    progress: undefined,
+                    theme: "light",
+                    onClose: () => {
+                        router.reload();
+                    }
+                    });
             } else {
-                throw new Error('Falló la creación de producto')
+                throw new Error('Falló la eliminación del producto')
             }
         } catch (error){
             console.log(error);
