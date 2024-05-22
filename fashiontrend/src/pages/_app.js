@@ -18,18 +18,18 @@ export default function App({ Component, pageProps }) {
 
   return(
     <div className="">
-        <nav className="flex w-screen justify-between items-center bg-gradient-to-b p-2 from-slate-800 to-transparent  mx-auto">
-            <Link href={{pathname:"/"}}>
+        <nav className="flex h-16 w-screen justify-between items-center bg-sky-500  mx-auto">
+            <Link className="px-2" href={{pathname:"/"}}>
                 Fashion Trend
             </Link>
-            <form onSubmit={handleSubmit} className="px-8 items-center w-10/12">
-              <input onChange={(e) => setNombre(e.target.value)} value={nombre} className="bg-gray-50 border w-100 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder="Buscar producto"/>
+            <form onSubmit={handleSubmit} className="px-8 items-center">
+              <input onChange={(e) => setNombre(e.target.value)} value={nombre} className=" bg-gray-50 border w-[72rem] border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder="Buscar producto"/>
             </form>
             
-            <Link className="px-6" href={{pathname:"/producto/listado"}}>Listado</Link>
+            <Link className="px-2" href={{pathname:"/producto/listado"}}>Listado</Link>
 
             
-            <div className="flex items-center">
+            <div className="flex px-4 items-center">
                 <button className="bg-[#a6c1ee] text-white px-3 py-1 rounded-full hover:bg-[#87acec]">Iniciar Sesión</button>
             </div>
             <ToastContainer />
