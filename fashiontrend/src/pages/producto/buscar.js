@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import BuscarComponent from "../components/Producto/buscar";
+import BuscarComponent from "../components/Producto/productoinicio";
 
 
 export default function Buscar(){
@@ -59,9 +59,7 @@ export default function Buscar(){
                 {initialIndex + 1} - {lastIndex} de {products.filter(p => p.nombre.toLowerCase().includes(nombre.toLowerCase())).length}
             </div>
             {products.filter(p => p.nombre.toLowerCase().includes(nombre.toLowerCase())).slice(initialIndex,lastIndex).map(products => (
-                <div className="py-3 px-4">
                     <BuscarComponent {...products}/>
-                </div>
             ))}
             <footer className="grid px-10 py-6 grid-cols-6 w-screen">
                 <div>
