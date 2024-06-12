@@ -84,6 +84,10 @@ const Navbar = () => {
           <Link className="text-white px-2" href={{ pathname: "/producto/listado" }}>
             Listado
           </Link>
+          {/* Cambiar id fija por id usuario logeado*/}
+          <Link className="text-white px-2" href={{ pathname: "/cliente/6642497987b35bec7387870f/listadeseados" }}>
+            Lista de Deseados
+          </Link>
         </div>
         <div className="flex items-center space-x-4">
           <button className="bg-[#a6c1ee] text-white px-3 py-1 rounded-full hover:bg-[#87acec]">
