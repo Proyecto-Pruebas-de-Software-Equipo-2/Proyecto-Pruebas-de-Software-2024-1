@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Link from "next/link"; // Import Link
 
 const ISSERVER = typeof window === "undefined";
 export default function Editar(){
@@ -24,7 +25,7 @@ export default function Editar(){
         fetch("http://localhost:3000/api/products/" + id)
         .then((response) => response.json())
         .then((json) => setproduct(json))
-    },[])
+    },[id])
 
     const [nombre, setNombre] = useState("");
     const [talla, setTalla] = useState("");

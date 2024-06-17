@@ -11,13 +11,8 @@ const Navbar = () => {
 
     // Hardcoded categories
     const categories2 = [
-        'Men',
-        'Women',
-        'Kids',
-        'Accessories',
-        'Shoes',
-        'Sales',
-        'faldas'
+        'Shorts y falda',
+        'Faldas'
         
         // Add more categories as needed
       ];
@@ -83,6 +78,10 @@ const Navbar = () => {
           </form>
           <Link className="text-white px-2" href={{ pathname: "/producto/listado" }}>
             Listado
+          </Link>
+          {/* Cambiar id fija por id usuario logeado*/}
+          <Link className="text-white px-2" href={{ pathname: "/cliente/6642497987b35bec7387870f/listadeseados" }}>
+            Lista de Deseados
           </Link>
         </div>
         <div className="flex items-center space-x-4">

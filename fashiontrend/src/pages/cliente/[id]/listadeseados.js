@@ -29,7 +29,7 @@ export default function ListaDeseados(){
           fetch("http://localhost:3000/api/clients/" + id)
           .then((response) => response.json())
           .then((json) => setclient(json))
-      },[])
+      },[id]);
 
 
 
@@ -41,7 +41,7 @@ export default function ListaDeseados(){
                setFilteredProducts(products.filter(p => client.favoritos.includes(p._id)));
            })
            .catch((error) => console.error("Error fetching products:", error));
-         }, [client]); 
+         }, [client, products]); 
      
      
 

@@ -17,9 +17,10 @@ export default function Buscar(){
     },[router.pathname])
 
 
+    //Aqui hay que ver si realmente se necesita el array de dependencia, en las warnings sale que tambien necesita products.length
     useEffect(() => {
         setproductsAmount(products.length)
-    },[initialIndex])
+    },[initialIndex, products.length])
 
     
     function handleNext(){
@@ -59,7 +60,7 @@ export default function Buscar(){
                 {initialIndex + 1} - {lastIndex} de {products.filter(p => p.nombre.toLowerCase().includes(nombre.toLowerCase())).length}
             </div>
             {products.filter(p => p.nombre.toLowerCase().includes(nombre.toLowerCase())).slice(initialIndex,lastIndex).map(products => (
-                    <BuscarComponent {...products}/>
+                    <BuscarComponent key={products._id} {...products}/>
             ))}
             <footer className="grid px-10 py-6 grid-cols-6 w-screen">
                 <div>

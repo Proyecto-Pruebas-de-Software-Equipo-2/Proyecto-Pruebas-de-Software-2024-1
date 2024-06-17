@@ -20,7 +20,7 @@ export default function Listado() {
 
     useEffect(() => {
         setproductsAmount(products.length)
-    },[lastIndex,initialIndex])
+    },[lastIndex,initialIndex, products.length])
 
     const categorias = [...new Set(products.map((p)=>p.categoria))];
     
@@ -63,14 +63,14 @@ export default function Listado() {
                 {initialIndex + 1} - {lastIndex} de {products.length}
             </div>
             <div className="grid gap-4 grid-flow-cols-1">
-                {categorias.map((categorias) => (
-                    <div>
+                {categorias.map((categorias, index) => (
+                <div key={index}>
                         {products.slice(initialIndex,lastIndex).filter(p => p.categoria == categorias).map(products => (
-                            <div>
+                            <div key={products._id}>
                                 <ListadoComponent {...products}/>
                             </div>
                         ))}
-                    </div>
+                </div>
                 ))}
             </div>
             <footer className="grid px-10 py-6 grid-cols-6 w-screen">
