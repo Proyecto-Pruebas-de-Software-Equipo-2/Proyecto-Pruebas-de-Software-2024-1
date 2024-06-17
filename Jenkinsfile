@@ -70,9 +70,19 @@ pipeline {
     post {
         always {
             script {
+                def failedStage = null
+                currentBuild.stages.each { stage ->
+                    if (stage.status == 'FAILED') {
+                        failedStage = stage.name
+                    }
+                }
+                
                 // Send notification to Slack
-                slackSend channel: 'jenkins',
-                          message: "Build Status: ${currentBuild.currentResult} in ${env.JOB_NAME} ${env.BUILD_NUMBER}. See details at ${BUILD_URL}"
+                def message = "Build Status: ${currentBuild.currentResult} in ${env.JOB_NAME} ${env.BUILD_NUMBER}. See details at ${BUILD_URL}"
+                if (failedStage) {
+                    message += ". Failed at stage: ${failedStage}"
+                }
+                slackSend channel: 'jenkins', message: message
             }
         }
         
@@ -81,7 +91,15 @@ pipeline {
         }
         
         failure {
-            echo 'Pipeline failed!'
+            script {
+                def failedStage = null
+                currentBuild.stages.each { stage ->
+                    if (stage.status == 'FAILED') {
+                        failedStage = stage.name
+                    }
+                }
+                echo "Pipeline failed at stage: ${failedStage}"
+            }
         }
     }
 }

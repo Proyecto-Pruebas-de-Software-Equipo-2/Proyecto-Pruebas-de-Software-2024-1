@@ -11,8 +11,7 @@ const ClienteSchema = new Schema({
         numero: Number,
         codigo: Number,
       },
-    telefono: Number,
-    favoritos: [String]
+    telefono: Number
 })
 
 
