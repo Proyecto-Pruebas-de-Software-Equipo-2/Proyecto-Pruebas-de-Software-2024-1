@@ -40,20 +40,22 @@ pipeline {
                 script {
                     dir('fashiontrend') {
                         sh 'npm run dev &'
-                        sleep(time: 30, unit: 'SECONDS')
+                        sleep(time: 10, unit: 'SECONDS')
                     }
                 }
             }
         }
       
         stage('Run Tests') {
-            steps {
-                script {
-                    dir('fashiontrend') {
-                        sh 'npm run cy:run'
-                    }
+        steps {
+            script {
+            ansiColor('xterm') { // Specify the desired color theme (optional)
+                dir('fashiontrend') {
+                sh 'npm run cy:run'
                 }
             }
+            }
+        }
         }
         
         stage('Send Build Info to Jira') {
