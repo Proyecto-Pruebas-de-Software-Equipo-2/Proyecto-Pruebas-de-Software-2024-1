@@ -18,6 +18,7 @@ pipeline {
             steps {
                 script {
                     dir('fashiontrend') {
+                        sh 'npm cache clean --force'
                         sh 'npm install -f'
                     }
                 }
