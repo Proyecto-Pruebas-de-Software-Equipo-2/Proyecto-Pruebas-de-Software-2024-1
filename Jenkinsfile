@@ -39,8 +39,7 @@ pipeline {
                 sh 'npm run cy:run'
             }
         }
-    }
-
+        
         stage('Send Build Info to Jira') {
             steps {
                 script {
@@ -58,6 +57,7 @@ pipeline {
                 }
             }
         }
+    }
     
     post {
         success {
@@ -68,3 +68,4 @@ pipeline {
         }
     }
 }
+
