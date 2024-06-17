@@ -11,7 +11,7 @@ const ISSERVER = typeof window === "undefined";
 export default function ListaDeseados(){
     const router = useRouter();
     const [id, setId] = useState(() => {
-        const Id = router.query.id
+        const Id = router.query.id;
         if (ISSERVER) return Id;
         if (Id) {
            localStorage.setItem("Id", Id);
@@ -41,7 +41,7 @@ export default function ListaDeseados(){
                setFilteredProducts(products.filter(p => client.favoritos.includes(p._id)));
            })
            .catch((error) => console.error("Error fetching products:", error));
-         }, [client, products]); 
+         }, [client]); 
      
      
 
