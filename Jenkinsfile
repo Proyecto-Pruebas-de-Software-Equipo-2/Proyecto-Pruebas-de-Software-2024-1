@@ -2,8 +2,7 @@ pipeline {
     agent any
     
     environment {
-        // Define Node.js version and npm configuration
-        NODEJS_VERSION = '10.7.0'  // Adjust to your Node.js version installed in Jenkins
+        NODEJS_VERSION = '10.7.0'
         NODEJS_HOME = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
     }
@@ -17,54 +16,71 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                script {
+                    dir('fashiontrend') {
+                        sh 'npm install'
+                    }
+                }
             }
         }
         
         stage('Build') {
             steps {
-                sh 'npm run build'
+                script {
+                    dir('fashiontrend') {
+                        sh 'npm run build'
+                    }
+                }
             }
         }
 
         stage('Deploy to Localhost') {
             steps {
-                sh 'npm run dev &'
-                sleep(time: 30, unit: 'SECONDS')  // Wait for the application to start
+                script {
+                    dir('fashiontrend') {
+                        sh 'npm run dev &'
+                        sleep(time: 30, unit: 'SECONDS')
+                    }
+                }
             }
         }
       
         stage('Run Tests') {
             steps {
-                sh 'npm run cy:run'
+                script {
+                    dir('fashiontrend') {
+                        sh 'npm run cy:run'
+                    }
+                }
             }
         }
         
         stage('Send Build Info to Jira') {
             steps {
                 script {
-                    // Example of sending build information to Jira using jiraSendBuildInfo
-                    jiraSendBuildInfo branch: '**', site: 'usm-team-2.atlassian.net'
-                }
-            }
-        }
-        
-        stage('Send Notification to Slack') {
-            steps {
-                script {
-                    // Example of sending a notification to Slack using slackSend
-                    slackSend botUser: true, channel: 'jenkins', tokenCredentialId: 'slack-bot-token'
+                    dir('fashiontrend') {
+                        jiraSendBuildInfo branch: '**', site: 'usm-team-2.atlassian.net'
+                    }
                 }
             }
         }
     }
     
     post {
-        success {
-            echo 'Pipeline succeeded! Insert any success actions here.'
+        always {
+            script {
+                // Send notification to Slack
+                slackSend channel: 'jenkins',
+                          message: "Build Status: ${currentBuild.currentResult} in ${env.JOB_NAME} ${env.BUILD_NUMBER}. See details at ${BUILD_URL}"
+            }
         }
+        
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        
         failure {
-            echo 'Pipeline failed! Insert any failure actions here.'
+            echo 'Pipeline failed!'
         }
     }
 }
