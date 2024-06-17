@@ -39,8 +39,25 @@ pipeline {
                 sh 'npm run cy:run'
             }
         }
-        
     }
+
+        stage('Send Build Info to Jira') {
+            steps {
+                script {
+                    // Example of sending build information to Jira using jiraSendBuildInfo
+                    jiraSendBuildInfo branch: '**', site: 'usm-team-2.atlassian.net'
+                }
+            }
+        }
+        
+        stage('Send Notification to Slack') {
+            steps {
+                script {
+                    // Example of sending a notification to Slack using slackSend
+                    slackSend botUser: true, channel: 'jenkins', tokenCredentialId: 'slack-bot-token'
+                }
+            }
+        }
     
     post {
         success {
