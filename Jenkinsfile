@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     dir('fashiontrend') {
-                        sh 'npm install --no-optional'
+                        sh 'npm install -f'
                     }
                 }
             }
