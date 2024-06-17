@@ -46,7 +46,7 @@ function ListadoComponent({ _id,nombre, precio,talla,descripcion,color,categoria
                             <h3 className="font-bold text-2xl">{nombre}</h3>
                         </div>
                         <div className="bg-violet-200 p-5 rounded-x1">
-                            <Image src={"/images/640.webp"} width={220} height={220}/>
+                            <Image src={"/images/640.webp"} width={220} height={220} alt={"borrador-temporal"}/>
                         </div>
                     </div>
                 </div>

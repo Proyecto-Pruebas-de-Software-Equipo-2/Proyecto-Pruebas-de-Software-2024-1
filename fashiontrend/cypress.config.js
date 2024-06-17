@@ -8,7 +8,7 @@ module.exports = defineConfig({
     },
     baseUrl: 'http://localhost:3000',
     specPattern: 'cypress/e2e/*.cy.{js,jsx,ts,tsx}', // Update this path if your tests are located differently
-    video: true,
+    video: false,
   },
   
 });
