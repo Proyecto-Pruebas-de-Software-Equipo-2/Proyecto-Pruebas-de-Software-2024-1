@@ -11,13 +11,8 @@ const Navbar = () => {
 
     // Hardcoded categories
     const categories2 = [
-        'Men',
-        'Women',
-        'Kids',
-        'Accessories',
-        'Shoes',
-        'Sales',
-        'faldas'
+        'Shorts y falda',
+        'Faldas'
         
         // Add more categories as needed
       ];
