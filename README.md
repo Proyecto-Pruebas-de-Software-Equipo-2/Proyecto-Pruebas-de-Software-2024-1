@@ -49,5 +49,10 @@ Para ejecutar la aplicación, sigue estos pasos:
 
 Para más detalles sobre el proyecto y el funcionamiento de Jenkins, visita nuestra [Wiki](https://github.com/Proyecto-Pruebas-de-Software-Equipo-2/Proyecto-Pruebas-de-Software-2024-1/wiki).
 
+## Videos
+
+[Entrega 1](https://youtu.be/ZGgTyxmcrAk)
+
+[Entrega 2](https://youtu.be/LQ1QVylhjQU)
 
 
