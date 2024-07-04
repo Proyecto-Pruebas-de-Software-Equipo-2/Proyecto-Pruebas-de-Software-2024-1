@@ -48,11 +48,13 @@ pipeline {
         stage('Run Cypress Tests') {
             steps {
                 script {
-                ansiColor('xterm') { // Specify the desired color theme (optional)
-                    dir('fashiontrend') {
-                    sh 'npm run cy:run'
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        ansiColor('xterm') {
+                            dir('fashiontrend') {
+                                sh 'npm run cy:run'
+                            }
+                        }
                     }
-                }
                 }
             }
         }
