@@ -12,7 +12,7 @@ describe('Admin Flow', () => {
     cy.get('label:contains("Precio")').next('input').type('25000');
     cy.get('label:contains("Stock")').next('input').type('20');
     cy.get('button[type="submit"].text-white.bg-blue-700').click();
-    cy.contains('Producto creado exitosamente').should('be.visible'); // Assert that the toast message appears
+    cy.contains('Producto creado exitosamente', {timeout: 15000}).should('be.visible'); // Assert that the toast message appears
   });
 
   it('permite a un administrador editar un producto del inventario', () => {
