@@ -19,7 +19,7 @@ pipeline {
                 script {
                     dir('fashiontrend') {
                         sh 'npm cache clean --force'
-                        sh 'npm install -f'
+                        sh 'npm install'
                     }
                 }
             }
@@ -46,17 +46,29 @@ pipeline {
             }
         }
       
-        stage('Run Tests') {
-        steps {
-            script {
-            ansiColor('xterm') { // Specify the desired color theme (optional)
-                dir('fashiontrend') {
-                sh 'npm run cy:run'
+        stage('Run Cypress Tests') {
+            steps {
+                script {
+                ansiColor('xterm') { // Specify the desired color theme (optional)
+                    dir('fashiontrend') {
+                    sh 'npm run cy:run'
+                    }
+                }
                 }
             }
+        }
+
+        stage('Run Selenium Tests') {
+            steps {
+                script {
+                    dir('fashiontrend') {
+                        // Ejemplo de ejecución de tests Selenium con Node.js y WebDriver
+                        sh 'npm run selenium'
+                    }
+                }
             }
         }
-        }
+
         
         stage('Send Build Info to Jira') {
             steps {

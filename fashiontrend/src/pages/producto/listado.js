@@ -88,5 +88,4 @@ export default function Listado() {
         </div>
 
     )
-
 }
