@@ -1,8 +1,14 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const assert = require('assert');
+const chrome = require('selenium-webdriver/chrome');
 
 async function crearProductoTestError() {
-    let driver = await new Builder().forBrowser('chrome').build();
+    let options = new chrome.Options();
+    options.addArguments('headless');
+    options.addArguments('no-sandbox');
+    options.addArguments('disable-dev-shm-usage');
+
+    let driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
     try {
         // Navegar a la página de creación de productos
         await driver.get('http://localhost:3000/producto/crear');
@@ -34,7 +40,12 @@ async function crearProductoTestError() {
 }
 
 async function crearProductoTest() {
-    let driver = await new Builder().forBrowser('chrome').build();
+    let options = new chrome.Options();
+    options.addArguments('headless');
+    options.addArguments('no-sandbox');
+    options.addArguments('disable-dev-shm-usage');
+
+    let driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
     try {
         // Navegar a la página de creación de productos
         await driver.get('http://localhost:3000/producto/crear');
@@ -117,7 +128,3 @@ async function waitForErrorToast(driver, timeout) {
 // Llamar a las dos pruebas secuencialmente
 crearProductoTestError();
 crearProductoTest();
-
-
-
-
