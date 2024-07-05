@@ -64,7 +64,7 @@ pipeline {
                 script {
                     dir('fashiontrend') {
                         // Ejemplo de ejecución de tests Selenium con Node.js y WebDriver
-                        sh 'npm run selenium'
+                        sh 'npm run selenium -- --headless --no-sandbox --disable-dev-shm-usage'
                     }
                 }
             }
