@@ -1,8 +1,8 @@
 describe('Admin Flow', () => {
   it('permite a un administrador añadir un producto del inventario', () => {
     // Add client
-    cy.visit('/producto/crear');
-    //cy.findByText('Crear Producto').click();
+    cy.visit('/producto/listado');
+    cy.findByText('Crear Producto').click();
     cy.get('label:contains("Nombre")').next('input').type('Test Product');
     cy.get('label:contains("Talla")').next('input').type('M');
     cy.get('label:contains("Descripción")').next('textarea').type('Falda azul mujer');

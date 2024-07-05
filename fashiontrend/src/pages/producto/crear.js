@@ -51,10 +51,8 @@ export default function Crear(){
                     draggable: false,
                     progress: undefined,
                     theme: "light",
-                    onClose: () => {
-                        router.push('/producto/listado');
-                    }
                     });
+                    router.push('/producto/listado');
             } else {
                 throw new Error('Falló la creación de producto')
             }

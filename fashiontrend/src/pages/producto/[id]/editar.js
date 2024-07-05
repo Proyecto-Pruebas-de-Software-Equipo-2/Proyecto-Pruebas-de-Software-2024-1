@@ -18,29 +18,41 @@ export default function Editar(){
         }
       });
 
-    const [product, setproduct] = useState([]);
-
+    const [product, setProduct] = useState({
+        nombre: "",
+        talla: "",
+        descripcion: "",
+        color: "",
+        categoria: "",
+        tipo: "",
+        precio: "",
+        stock: ""
+    });
 
     useEffect(() => {
         fetch("http://localhost:3000/api/products/" + id)
         .then((response) => response.json())
-        .then((json) => setproduct(json))
-    },[id])
-
-    const [nombre, setNombre] = useState("");
-    const [talla, setTalla] = useState("");
-    const [descripcion, setDescripcion] = useState("");
-    const [color, setColor] = useState("");
-    const [categoria, setCategoria] = useState("");
-    const [tipo, setTipo] = useState("");
-    const [precio, setPrecio] = useState();
-    const [stock, setStock] = useState();
+        .then((json) => {
+            setProduct(json);
+        })
+    }, [id]);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
 
+        const { nombre, talla, descripcion, color, categoria, tipo, precio, stock } = product;
+
         if (!nombre || !talla || !descripcion || !color || !categoria || !tipo || !precio || !stock){
-            alert("Debe llenar todos los campos");
+            toast.error('Debe llenar todos los campos', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                progress: undefined,
+                theme: "light"
+            });
             return;
         }
         try {
@@ -49,7 +61,7 @@ export default function Editar(){
                 headers: {
                     "Content-type": "application/json"
                 },
-                body: JSON.stringify({nombre,talla,descripcion,color,categoria,tipo,precio,stock}),
+                body: JSON.stringify(product),
             });
             if (res.ok){
                 toast.success('Producto editado exitosamente!', {
@@ -72,6 +84,14 @@ export default function Editar(){
         }
     };
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setProduct((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
     return(
         <div className="items-center ">
         <title>Editar Producto</title>
@@ -79,35 +99,35 @@ export default function Editar(){
         <form onSubmit={handleSubmit} className="max-w-sm mx-auto items-center rounded-lg p-4 border-purple-950 border-4 box-border h-50 w-50">
             <div className="mb-5">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
-                <input onChange={(e) => setNombre(e.target.value)} value={nombre} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder={product.nombre}/>
+                <input onChange={handleChange} value={product.nombre} name="nombre" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text"/>
             </div>
             <div className="mb-5">
-                <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Talla</label>
-                <input onChange={(e) => setTalla(e.target.value)} value={talla} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder={product.talla}/>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Talla</label>
+                <input onChange={handleChange} value={product.talla} name="talla" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text"/>
             </div>
             <div className="mb-5">
-                <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
-                <textarea onChange={(e) => setDescripcion(e.target.value)} value={descripcion} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder={product.descripcion}/>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
+                <textarea onChange={handleChange} value={product.descripcion} name="descripcion" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text"/>
             </div>
             <div className="mb-5">
-                <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Color</label>
-                <input onChange={(e) => setColor(e.target.value)} value={color} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder={product.color}/>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Color</label>
+                <input onChange={handleChange} value={product.color} name="color" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text"/>
             </div>
             <div className="mb-5">
-                <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
-                <input onChange={(e) => setCategoria(e.target.value)} value={categoria} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder={product.categoria}/>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
+                <input onChange={handleChange} value={product.categoria} name="categoria" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text"/>
             </div>
             <div className="mb-5">
-                <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo</label>
-                <input onChange={(e) => setTipo(e.target.value)} value={tipo} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder={product.tipo}/>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo</label>
+                <input onChange={handleChange} value={product.tipo} name="tipo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text"/>
             </div>
             <div className="mb-5">
-                <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
-                <input onChange={(e) => setPrecio(e.target.value)} value={precio} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" placeholder={product.precio}/>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
+                <input onChange={handleChange} value={product.precio} name="precio" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number"/>
             </div>
             <div className="mb-5">
-                    <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
-                    <input onChange={(e) => setStock(e.target.value)} value={stock} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" placeholder={product.stock}/>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
+                <input onChange={handleChange} value={product.stock} name="stock" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number"/>
             </div>
             <div className="grid grid-cols-2 px-3 gap-8">
                 <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar Producto</button>    
