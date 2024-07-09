@@ -117,7 +117,6 @@ async function modificarProductoCorrecto() {
         await driver.wait(until.elementLocated(By.css("form[class*='max-w-sm']")), 10000);
 
         // Simular el llenado del formulario y vaciar los campos
-        await clearAndType(driver, await driver.findElement(By.name('nombre')), '');
         await clearAndType(driver, await driver.findElement(By.name('talla')), 'Nueva Talla');
         await clearAndType(driver, await driver.findElement(By.name('descripcion')), 'Nueva desc');
 
