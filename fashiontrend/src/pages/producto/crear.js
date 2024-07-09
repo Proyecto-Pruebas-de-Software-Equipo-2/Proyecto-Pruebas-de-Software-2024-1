@@ -21,7 +21,16 @@ export default function Crear(){
         e.preventDefault();
 
         if (!nombre || !talla || !descripcion || !color || !categoria || !tipo || !precio || !stock){
-            alert("Debe llenar todos los campos");
+            toast.error('Debe llenar todos los campos', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                progress: undefined,
+                theme: "light"
+            });
             return;
         }
         try {
@@ -42,10 +51,8 @@ export default function Crear(){
                     draggable: false,
                     progress: undefined,
                     theme: "light",
-                    onClose: () => {
-                        router.push('/producto/listado');
-                    }
                     });
+                    router.push('/producto/listado');
             } else {
                 throw new Error('Falló la creación de producto')
             }
@@ -97,8 +104,6 @@ export default function Crear(){
                 <Link href={"/producto/listado"} className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Cancelar</Link>
                 </div>
                 
-                
-               
             </form>
         </div>
     )

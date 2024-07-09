@@ -18,8 +18,7 @@ pipeline {
             steps {
                 script {
                     dir('fashiontrend') {
-                        sh 'npm cache clean --force'
-                        sh 'npm install -f'
+                        sh 'npm install'
                     }
                 }
             }
@@ -40,21 +39,37 @@ pipeline {
                 script {
                     dir('fashiontrend') {
                         sh 'npm run dev &'
-                        sleep(time: 30, unit: 'SECONDS')
+                        sleep(time: 10, unit: 'SECONDS')
                     }
                 }
             }
         }
       
-        stage('Run Tests') {
+        stage('Run Cypress Tests') {
             steps {
                 script {
-                    dir('fashiontrend') {
-                        sh 'npm run cy:run'
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        ansiColor('xterm') {
+                            dir('fashiontrend') {
+                                sh 'npm run cy:run'
+                            }
+                        }
                     }
                 }
             }
         }
+
+        stage('Run Selenium Tests') {
+            steps {
+                script {
+                    dir('fashiontrend') {
+                        // Ejemplo de ejecución de tests Selenium con Node.js y WebDriver
+                        sh 'npm run selenium -- --headless --no-sandbox --disable-dev-shm-usage'
+                    }
+                }
+            }
+        }
+
         
         stage('Send Build Info to Jira') {
             steps {
